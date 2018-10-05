@@ -6,6 +6,8 @@ namespace keepr.Models
     public class Keep
     {
 
+        public int Id { get; set; }
+
         [Required]
         [MinLength(6)]
         public string Name { get; set; }
