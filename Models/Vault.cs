@@ -5,7 +5,7 @@ namespace keepr.Models
     public class Vault
     {
 
-        public bool isPrivate { get; set; }
+        public bool IsPrivate { get; set; }
         public int Keeps { get; set; }
         public int Shares { get; set; }
         public int Views { get; set; }
@@ -32,7 +32,7 @@ namespace keepr.Models
             Keeps = keeps;
             Shares = shares;
             Views = views;
-            isPrivate = true;
+            IsPrivate = isPrivate;
 
 
         }
