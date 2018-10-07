@@ -34,8 +34,8 @@ namespace keepr.Repositories
         public Vault Create(Vault vault)
         {
             int id = _db.ExecuteScalar<int>(@"
-        INSERT INTO vaults (name, description)
-        VALUES (@Name, @Description);
+        INSERT INTO vaults (name, description, isPrivate, keeps, shares, views)
+        VALUES (@Name, @Description, @isPrivate, @keeps, @shares, @views);
         SELECT LAST_INSERT_ID();", vault
             );
             vault.Id = id;
@@ -46,8 +46,8 @@ namespace keepr.Repositories
         public Vault Update(Vault vault)
         {
             _db.Execute(@"
-      UPDATE vaults SET (name, description) 
-      VALUES (@Name, @Description)
+      UPDATE vaults SET (name, description, isPrivate, keeps, shares, views)
+      VALUES (@Name, @Description, @isPrivate, @keeps, @shares, @views)
       WHERE id = @Id
       ", vault);
             return vault;

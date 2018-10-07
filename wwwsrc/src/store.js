@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios'
 import router from './router'
+import keeps from './models/Keep';
 
 Vue.use(Vuex)
 
@@ -19,12 +20,17 @@ let api = Axios.create({
 
 export default new Vuex.Store({
   state: {
-    user: {}
+    user: {},
+    keeps: []
   },
   mutations: {
     setUser(state, user) {
       state.user = user
+    },
+    setKeeps(state, keeps) {
+      state.keeps = keeps;
     }
+
   },
   actions: {
     register({ commit, dispatch }, newUser) {
@@ -55,6 +61,14 @@ export default new Vuex.Store({
         })
         .catch(e => {
           console.log('Login Failed')
+        })
+    },
+
+    getAllKeeps({ commit, dispatch }) {
+      api.get('keeps')
+        .then(res => {
+          console.log(res.data)
+          commit('setKeeps', res.data)
         })
     }
   }
