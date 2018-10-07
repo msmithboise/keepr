@@ -16,16 +16,15 @@ namespace keepr.Models
         [MaxLength(255)]
         public string Description { get; set; }
 
-        [Required]
-        public string Url { get; set; }
+
 
         public Keep() { }
 
-        public Keep(string name, string description, string url)
+        public Keep(string name, string description)
         {
             Name = name;
             Description = description;
-            Url = url;
+
         }
 
 
