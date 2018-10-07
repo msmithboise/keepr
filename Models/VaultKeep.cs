@@ -2,9 +2,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace keepr.Models
 {
-
-    public class VaultKeeps
+    public class VaultKeep
     {
+
+
+        public int Id { get; set; }
+
+        public int UserId { get; set; }
+
 
         [Required]
         [MinLength(6)]
@@ -15,10 +20,19 @@ namespace keepr.Models
         public string Description { get; set; }
 
 
-        public VaultKeeps(string name, string description)
+
+        public VaultKeep(string name, string description)
         {
             Name = name;
             Description = description;
+
         }
+
+
     }
+
+
+
+
+
 }

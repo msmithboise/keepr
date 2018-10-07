@@ -21,7 +21,7 @@ namespace keepr.Repositories
         //GET ALL 
         public IEnumerable<Vault> GetAll()
         {
-            return _db.Query<Vault>("SELECT * FROM keeps;");
+            return _db.Query<Vault>("SELECT * FROM vaults;");
         }
 
         //GET Vault BY ID

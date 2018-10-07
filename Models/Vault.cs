@@ -5,6 +5,10 @@ namespace keepr.Models
     public class Vault
     {
 
+        public bool isPrivate { get; set; }
+        public int Keeps { get; set; }
+        public int Shares { get; set; }
+        public int Views { get; set; }
 
         public int Id { get; set; }
 
@@ -21,10 +25,15 @@ namespace keepr.Models
 
 
 
-        public Vault(string name, string description)
+        public Vault(string name, string description, bool isPrivate, int keeps, int shares, int views)
         {
             Name = name;
             Description = description;
+            Keeps = keeps;
+            Shares = shares;
+            Views = views;
+            isPrivate = true;
+
 
         }
 
