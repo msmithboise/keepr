@@ -2,20 +2,21 @@
   <div class="home">
     <h1>Keepr</h1>
 
-   <div v-for="keep in allKeeps">
+   <div v-for="keep in allKeeps" :key="keep._id">
     <div>
 
-    <h2>{{keep.name}}</h2>
-
-    </div>
-
     <div style="color: blue">
-
+    <h2>{{keep.name}}</h2>
     <h2>{{keep.description}}</h2>
 
+   </div>
+    </div>
     </div>
 
-    </div>
+    <button>"Create Keep"</button>
+
+
+
 
   </div>
 </template>
