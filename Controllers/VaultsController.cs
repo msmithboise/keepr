@@ -29,7 +29,7 @@ namespace keepr.Controllers
         {
             if (ModelState.IsValid)
             {
-                vault = new Vault(vault.Name, vault.Description);
+                vault = new Vault(vault.Name, vault.Description, vault.IsPrivate, vault.Keeps, vault.Shares, vault.Views);
                 return _repo.Create(vault);
             }
             throw new Exception("INVALID VAULT");

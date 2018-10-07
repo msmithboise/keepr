@@ -32,7 +32,8 @@ namespace keepr.Models
             Keeps = keeps;
             Shares = shares;
             Views = views;
-            IsPrivate = isPrivate = true;
+            IsPrivate = isPrivate;
+
 
 
         }
