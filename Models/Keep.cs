@@ -8,6 +8,8 @@ namespace keepr.Models
 
         public int Id { get; set; }
 
+        public int UserId { get; set; }
+
         [Required]
         [MinLength(6)]
         public string Name { get; set; }
