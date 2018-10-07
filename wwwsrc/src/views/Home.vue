@@ -1,11 +1,22 @@
 <template>
   <div class="home">
-    <h1>Welcome Home</h1>
+    <h1>Keepr</h1>
 
-    <!-- <div v-for="keep in keeps" :key="keep">
-    </div> -->
+   <div v-for="keep in allKeeps">
+    <div>
 
-    <h2>{{keeps[0]}}</h2>
+    <h2>{{keep.name}}</h2>
+
+    </div>
+
+    <div style="color: blue">
+
+    <h2>{{keep.description}}</h2>
+
+    </div>
+
+    </div>
+
   </div>
 </template>
 
@@ -28,7 +39,7 @@ export default {
   },
 
   computed: {
-    keeps() {
+    allKeeps() {
       return this.$store.state.keeps;
     }
   }
