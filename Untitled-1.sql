@@ -10,7 +10,7 @@
 CREATE TABLE vaults (
     id int NOT NULL AUTO_INCREMENT,
     name VARCHAR(20) NOT NULL,
-        isPrivate TINYINT
+        isPrivate TINYINT,
     description VARCHAR(255) NOT NULL,
     userId VARCHAR(255),
         img VARCHAR(255),
