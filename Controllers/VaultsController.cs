@@ -17,11 +17,15 @@ namespace keepr.Controllers
             _repo = repo;
         }
 
+
+        [Authorize]
         [HttpGet]
         public IEnumerable<Vault> Get()
         {
-            return _repo.GetAll();
+            string userId = HttpContext.User.Identity.Name;
+            return _repo.GetAll(userId);
         }
+
 
         [Authorize]
         [HttpPost]
@@ -35,18 +39,25 @@ namespace keepr.Controllers
             throw new Exception("INVALID VAULT");
         }
 
+
+        [Route("{id}")]
+        [HttpGet("GetbyId")]
+        public Vault GetbyId(int id)
+        {
+            return _repo.GetById(id);
+        }
         // 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(string id, [FromBody]Vault vault)
         {
+            return _repo.EditVault(vault);
         }
 
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(string id)
         {
         }
 
     }
-
 }

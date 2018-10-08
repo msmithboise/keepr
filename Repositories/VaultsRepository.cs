@@ -18,10 +18,10 @@ namespace keepr.Repositories
 
         //CRUD VIA SQL
 
-        //GET ALL Vaults
-        public IEnumerable<Vault> GetAll()
+        //GET ALL Vaults for the logged in user
+        public IEnumerable<Vault> GetAll(string userId)
         {
-            return _db.Query<Vault>("SELECT * FROM vaults;");
+            return _db.Query<Vault>("SELECT * FROM vaults WHERE userId = @userId;", new { userId });
         }
 
         //GET Vault BY ID
@@ -33,7 +33,7 @@ namespace keepr.Repositories
         //CREATE Vault
         public Vault Create(Vault vault)
         {
-            int id = _db.ExecuteScalar<int>(@"
+            string id = _db.ExecuteScalar<string>(@"
         INSERT INTO vaults (name, description, isPrivate, keeps, shares, views)
         VALUES (@Name, @Description, @isPrivate, @keeps, @shares, @views);
         SELECT LAST_INSERT_ID();", vault
@@ -43,13 +43,11 @@ namespace keepr.Repositories
         }
 
         //UPDATE Vault
-        public Vault Update(Vault vault)
+        public Vault EditVault(Vault vault)
         {
-            _db.Execute(@"
-      UPDATE vaults SET (name, description, isPrivate, keeps, shares, views)
-      VALUES (@Name, @Description, @isPrivate, @keeps, @shares, @views)
-      WHERE id = @Id
-      ", vault);
+            _db.Execute(@" UPDATE vaults 
+            SET nam = @Name, description = @Description, isPrivate = @IsPrivate, keeps = @Keeps, shares = @Shares, views = @Views)
+            WHERE id = @Id;", vault);
             return vault;
         }
 
