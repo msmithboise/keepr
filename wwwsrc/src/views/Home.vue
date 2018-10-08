@@ -3,11 +3,13 @@
     <h1>Keepr</h1>
 
 <div>
-<button>Create New Vault </button>
-     <form class="form-inline" @submit.prevent="searchByArtist"  >
+<button type="submit">Create New Vault </button>
+     <form class="form-inline" @submit.prevent="createVault"  >
         <!--DO NOT MODIFY THE ID OR ONCLICK ATTRIBUTES IN THIS FORM-->
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Name"/>
+            <input type="text" class="form-control" placeholder="Description"/>
+
             
            </div>
 
