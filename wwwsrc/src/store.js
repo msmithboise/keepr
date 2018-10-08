@@ -21,7 +21,8 @@ let api = Axios.create({
 export default new Vuex.Store({
   state: {
     user: {},
-    keeps: []
+    keeps: [],
+    vaults: []
   },
   mutations: {
     setUser(state, user) {
@@ -29,7 +30,14 @@ export default new Vuex.Store({
     },
     setKeeps(state, keeps) {
       state.keeps = keeps;
+    },
+    setVaults(state, vaults) {
+      state.vaults = vaults;
+    },
+    addedVault(state, vault) {
+      state.vaults.push(vault)
     }
+
 
   },
   actions: {
@@ -70,6 +78,28 @@ export default new Vuex.Store({
           console.log(res.data)
           commit('setKeeps', res.data)
         })
+    },
+
+    getAllVaults({ commit, dispatch }) {
+      api.get('vaults')
+        .then(res => {
+          console.log(res.data)
+          commit('setVaults', res.data)
+        })
+    },
+
+    addVaults({ commit, dispatch }, vault) {
+      let addedVault = {
+        name: vault.name,
+        description: vault.description,
+
+      }
+      console.log(addedVault)
+      api.post('/', addedVault) // this is where you're sending your board.
+        .then(res => {
+          commit('addToVault', res.data)
+        })
+
     }
   }
 })
