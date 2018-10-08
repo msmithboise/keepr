@@ -35,17 +35,16 @@ namespace keepr.Controllers
             throw new Exception("INVALID VAULT");
         }
 
-        [HttpPut]
-        public Vault UpdateVault([FromBody] Vault vault)
+        // 
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody]string value)
         {
-            return _repo.Update(vault);
         }
 
-        [HttpDelete]
 
-        public Vault DeleteVault([FromBody] Vault vault)
+        [HttpDelete("{id}")]
+        public void Delete(int id)
         {
-            return _repo.Delete(vault);
         }
 
     }
