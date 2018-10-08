@@ -2,34 +2,22 @@
   <div class="home">
     <h1>Keepr</h1>
 
-<div>
-<button type="submit">Create New Vault </button>
-     <form class="form-inline" @submit.prevent="createVault"  >
-        <!--DO NOT MODIFY THE ID OR ONCLICK ATTRIBUTES IN THIS FORM-->
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Name"/>
-            <input type="text" class="form-control" placeholder="Description"/>
 
-            
-           </div>
 
-   <div v-for="vault in allVaults" :key="vault._id">
-    <div>
+   <div v-for="keep in keeps" :key="keep._id">
+    
 
     <div style="color: blue">
-    <h2>{{vault.name}}</h2>
-    <h2>{{vault.description}}</h2>
+    <h2>{{keep.name}}</h2>
+    <h2>{{keep.description}}</h2>
 
    </div>
+   
     </div>
-    </div>
-
-  </form>
 
 
 
-
-           </div>
+           
   </div>
 </template>
 
@@ -42,10 +30,9 @@ export default {
       this.$router.push({ name: "login" });
     }
     // gets all keeps
-    // this.$store.dispatch("getAllKeeps");
+    this.$store.dispatch("getAllKeeps");
 
     // this gets all vaults
-    this.$store.dispatch("getAllVaults");
   },
 
   data() {
@@ -54,12 +41,10 @@ export default {
     };
   },
 
+  // v-for is iterating computed
   computed: {
-    allKeeps() {
+    keeps() {
       return this.$store.state.keeps;
-    },
-    allVaults() {
-      return this.$store.state.vaults;
     }
   },
   methods: {
