@@ -33,13 +33,13 @@ namespace keepr.Controllers
         {
             if (ModelState.IsValid)
             {
-                vault = new Vault();
+                
                 return _repo.Create(vault);
             }
             throw new Exception("INVALID VAULT");
-        }
+        } 
 
-
+        [Authorize]
         [Route("{id}")]
         [HttpGet("GetbyId")]
         public Vault GetbyId(int id)
@@ -47,16 +47,20 @@ namespace keepr.Controllers
             return _repo.GetById(id);
         }
         // 
+
+
+
         [HttpPut("{id}")]
-        public void Put(string id, [FromBody]Vault vault)
+        public Vault Put(string id, [FromBody]Vault vault)
         {
             return _repo.EditVault(vault);
         }
 
 
         [HttpDelete("{id}")]
-        public void Delete(string id)
+        public Vault Delete(string id, [FromBody] Vault vault)
         {
+            return _repo.DeleteVault(vault);
         }
 
     }

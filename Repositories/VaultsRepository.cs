@@ -46,13 +46,13 @@ namespace keepr.Repositories
         public Vault EditVault(Vault vault)
         {
             _db.Execute(@" UPDATE vaults 
-            SET nam = @Name, description = @Description, isPrivate = @IsPrivate, keeps = @Keeps, shares = @Shares, views = @Views)
+            SET name = @Name, description = @Description, isPrivate = @IsPrivate, keeps = @Keeps, shares = @Shares, views = @Views)
             WHERE id = @Id;", vault);
             return vault;
         }
 
         //DELETE Vault
-        public Vault Delete(Vault vault)
+        public Vault DeleteVault(Vault vault)
         {
             _db.Execute("DELETE FROM vaults WHERE id = @Id", vault);
             return vault;
