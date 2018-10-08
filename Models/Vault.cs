@@ -25,18 +25,7 @@ namespace keepr.Models
 
 
 
-        public Vault(string name, string description, bool isPrivate, int keeps, int shares, int views)
-        {
-            Name = name;
-            Description = description;
-            Keeps = keeps;
-            Shares = shares;
-            Views = views;
-            IsPrivate = isPrivate;
 
-
-
-        }
 
 
     }
