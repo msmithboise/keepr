@@ -1,5 +1,5 @@
 <template>
-   
+   <div>
    <!-- nav bar -->
     <v-toolbar light style='background-color: var(--light-color);'>
       <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
@@ -18,17 +18,42 @@
         prepend-inner-icon="search"
         ></v-text-field>
 
-         <!-- <v-btn icon>
+ <!-- <v-btn icon>
         <v-icon>more_vert</v-icon>
       </v-btn> -->
-
-<router-link :to="{name: 'profile', path: '/'}"><v-btn >
-        My Profile
-      </v-btn></router-link>
-       
     </v-toolbar>
 
- 
+          <v-tabs
+    centered
+    style="background-color: var(--light-color)"
+    dark
+    icons-and-text
+  >
+    <v-tabs-slider color="yellow"></v-tabs-slider>
+
+    <v-tab href="#tab-1">
+      Vaults
+      <!-- <v-icon>Vaults</v-icon> -->
+    </v-tab>
+
+    <v-tab href="#tab-2">
+      Keeps
+      <!-- <v-icon>Keeps</v-icon> -->
+    </v-tab>
+
+  
+
+    <v-tab-item
+      v-for="i in 3"
+      :id="'tab-' + i"
+      :key="i"
+    >
+      <v-card flat>
+        <v-card-text>{{ text }}</v-card-text>
+      </v-card>
+    </v-tab-item>
+  </v-tabs>
+ </div>
 </template>
 
 <script>
@@ -40,7 +65,4 @@ export default {
 
 <style>
 </style>
-
-
-
 
