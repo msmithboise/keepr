@@ -1,4 +1,6 @@
 <template>
+<v-app>
+  <v-content>
   <div class="home">
     <h1>Keepr</h1>
 
@@ -19,6 +21,8 @@
 
            
   </div>
+  </v-content>
+  </v-app>
 </template>
 
 <script>
