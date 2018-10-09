@@ -29,7 +29,9 @@ namespace keepr.Controllers
         {
             if (ModelState.IsValid)
             {
+                string userId = HttpContext.User.Identity.Name;
                 keep = new Keep(keep.Name, keep.Description, keep.ImgUrl);
+                keep.UserId = userId;
                 return _repo.Create(keep);
             }
             throw new Exception("INVALID KEEP");
