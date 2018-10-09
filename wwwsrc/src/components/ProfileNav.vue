@@ -38,12 +38,12 @@
     <v-tabs-slider color="yellow"></v-tabs-slider>
 
     <v-tab href="#tab-1">
-      Vaults
+      My Vaults
       <!-- <v-icon>Vaults</v-icon> -->
     </v-tab>
 
     <v-tab href="#tab-2">
-      Keeps
+      My Keeps
       <!-- <v-icon>Keeps</v-icon> -->
     </v-tab>
 

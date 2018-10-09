@@ -9,26 +9,79 @@
 
 
 
+<v-layout row justify-center>
+    <v-dialog v-model="dialog" persistent max-width="500px">
+      <v-btn   class="mt-5" fab slot="activator" color="white" light><v-icon>add_circle_outline</v-icon></v-btn>
+      <v-card>
+        <v-card-title>
+          <span class="headline align-center">Create Keep</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container grid-list-md>
+            <v-layout wrap>
+             
+              
+              
+              
+              <v-flex xs12>
+                <v-text-field label="Name" required></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field label="Description" required></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm6>
+
+                <v-text-field label="Image Link" required></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm6>
+              
+              </v-flex>
+              
+            </v-layout>
+          </v-container>
+          
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" flat @click.native="dialog = false">Cancel</v-btn>
+          <v-btn color="blue darken-1" flat @click.native="dialog = false">Create</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-layout>
+
+
+
+
+
+
+
+
+
         <div class="keeps page-wrapper">
 
 
            
           <div v-for="keep in keeps" :key="keep._id">
 
+
+
             <v-img class="white--text" height="400px" width="250px" :src="keep.imgUrl">
 
-              <span class="headline">{{keep.name}}</span>
-
-              <span class="align-center">{{keep.description}}</span><br>
 
 
               
-
-              <v-btn class="heart-icon" fab dark small color="pink">
+              <v-btn value=true class="heart-icon" fab dark small color="pink">
               <v-icon dark>favorite</v-icon>
               </v-btn>
  
             </v-img>
+
+              <span style="color: #3b3b3b" class="headline">{{keep.name}}</span>
+              <v-divider light></v-divider>
+              <span style="color: #3b3b3b" class="align-center sub-text">{{keep.description}}</span><br>
+              <!-- <v-hover>
+            </v-hover> -->
 
           </div>
         </div>
@@ -59,7 +112,8 @@ export default {
 
   data() {
     return {
-      keepName: ""
+      keepName: "",
+      dialog: false
     };
   },
 

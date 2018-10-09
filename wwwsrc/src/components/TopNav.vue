@@ -15,11 +15,7 @@
         <v-icon>more_vert</v-icon>
       </v-btn> -->
 
-    <v-btn fab small>
-      <v-icon class="icons">
-        add_circle_outline
-      </v-icon>
-    </v-btn>
+
 
     <router-link :to="{name: 'profile', path: '/'}">
       <v-btn class="heart-icon icons" fab light small color="white">

@@ -103,6 +103,20 @@ export default new Vuex.Store({
           commit('addToVault', res.data)
         })
 
+    },
+
+    addKeep({ commit, dispatch }, vault) {
+      let addedKeep = {
+        name: vault.name,
+        description: vault.description,
+        imgUrl: vault.imgUrl
+      }
+
+      api.post('/', addedKeep)
+        .then(res => {
+          commit('setKeeps', res.data)
+        })
+
     }
   }
 })
