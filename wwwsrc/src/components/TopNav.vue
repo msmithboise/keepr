@@ -1,10 +1,9 @@
 <template>
-        <div id="app">
-  <v-app id="inspire">
-    <v-toolbar dark color="primary">
-      <v-toolbar-side-icon></v-toolbar-side-icon>
+   
+    <v-toolbar dark style='background-color: var(--lighter-background);'>
+      <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
   
-      <!-- <v-toolbar-title class="white--text">Title</v-toolbar-title> -->
+      <v-toolbar-title class="white--text">Keepr</v-toolbar-title>
   
       <v-spacer></v-spacer>
   
@@ -16,8 +15,7 @@
         <v-icon>more_vert</v-icon>
       </v-btn>
     </v-toolbar>
-  </v-app>
-</div>
+ 
 </template>
 
 <script>
