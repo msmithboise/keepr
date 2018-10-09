@@ -11,7 +11,7 @@ namespace keepr.Models
         public string UserId { get; set; }
 
         [Required]
-        [MinLength(6)]
+        [MinLength(1)]
         public string Name { get; set; }
 
         [Required]

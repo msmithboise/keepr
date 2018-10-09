@@ -23,7 +23,9 @@ export default new Vuex.Store({
   state: {
     user: {},
     keeps: [],
-    vaults: []
+    vaults: [],
+    myKeeps: []
+
   },
   mutations: {
     setUser(state, user) {
@@ -43,6 +45,10 @@ export default new Vuex.Store({
 
     createKeep(state, keeps) {
       state.keeps.push(keeps)
+    },
+
+    saveToMyKeeps(state, savedKeep) {
+      state.myKeeps.push(savedKeep)
     }
 
 
@@ -110,19 +116,20 @@ export default new Vuex.Store({
     },
 
     addKeep({ commit, dispatch }, keep) {
-      let addedKeep = {
-        name: keep.name,
-        description: keep.description,
-        imgUrl: keep.imgUrl
-      }
 
-      api.post('keeps', addedKeep)
+
+      api.post('keeps', keep)
         .then(res => {
+          console.log(res)
           commit('createKeep', res.data)
-          debugger
+
 
         })
 
+    },
+
+    saveToKeep({ commit, dispatch }, savedKeep) {
+      commit("saveToMyKeeps", savedKeep)
     }
   }
 })
