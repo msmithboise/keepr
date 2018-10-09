@@ -4,18 +4,44 @@
   <div class="home">
 
 <TopNav></TopNav>
-    <h1>Keepr</h1>
+
 
 
 
    <div v-for="keep in keeps" :key="keep._id">
+  
+        <v-img
+          class="white--text"
+          height="400px"
+          width="250px"
+          src="https://source.unsplash.com/random">
+                
+          <span class="headline">{{keep.name}}</span>
+          
+          <span class="align-center">{{keep.description}}</span><br>
+        
+        
+          
+          <v-btn flat color="red">Keep it</v-btn>
+          
+         
+        </v-img>
+        
+            
+            
+        
+      
+
+
+  
+
+
+
     
 
-    <div style="color: blue">
-    <h2>{{keep.name}}</h2>
-    <h2>{{keep.description}}</h2>
+   
 
-   </div>
+  
    
     </div>
 

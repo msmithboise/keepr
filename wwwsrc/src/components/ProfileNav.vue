@@ -18,6 +18,10 @@
         prepend-inner-icon="search"
         ></v-text-field>
 
+        <router-link :to="{name: 'home', path: '/'}"><v-btn >
+        Back To Home
+      </v-btn></router-link>
+
  <!-- <v-btn icon>
         <v-icon>more_vert</v-icon>
       </v-btn> -->
