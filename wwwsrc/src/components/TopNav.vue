@@ -1,9 +1,9 @@
 <template>
    
-    <v-toolbar dark style='background-color: var(--lighter-background);'>
+    <v-toolbar light style='background-color: var(--light-color);'>
       <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
   
-      <v-toolbar-title class="white--text">Keepr</v-toolbar-title>
+      <img src="../assets/keeprlogo.png">
   
       <v-spacer></v-spacer>
   

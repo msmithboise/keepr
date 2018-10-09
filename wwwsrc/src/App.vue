@@ -17,7 +17,7 @@
   --lighter-background: #14a098;
   --primary: #cb2d6f;
   --darkest-color: #0f292f;
-  background-color: var(--dark-background);
+  background-color: #ffffff;
 }
 
 #nav {
