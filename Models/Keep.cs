@@ -18,14 +18,17 @@ namespace keepr.Models
         [MaxLength(255)]
         public string Description { get; set; }
 
+        public string ImgUrl { get; set; }
+
 
 
         public Keep() { }
 
-        public Keep(string name, string description)
+        public Keep(string name, string description, string imgUrl)
         {
             Name = name;
             Description = description;
+            ImgUrl = imgUrl;
 
         }
 

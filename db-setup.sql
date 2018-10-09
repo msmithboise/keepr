@@ -23,15 +23,15 @@
 --         REFERENCES users(id)
 --         ON DELETE CASCADE,  
 --     PRIMARY KEY (id)
-);
+-- );
 
-DROP TABLE keeps;
+-- DROP TABLE keeps;
 CREATE TABLE keeps (
     id int NOT NULL AUTO_INCREMENT,
     name VARCHAR(20) NOT NULL,
     description VARCHAR(255) NOT NULL,
-    imgUrl NOT NULL VARCHAR(255),
-    userId VARCHAR(255),
+    imgUrl VARCHAR(255) NOT NULL,
+    userId VARCHAR(255) NOT NULL,
     INDEX userId (userId),
     FOREIGN KEY (userId)
         REFERENCES users(id)
