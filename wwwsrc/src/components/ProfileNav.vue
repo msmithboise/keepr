@@ -28,6 +28,7 @@
     </v-toolbar>
 
           <v-tabs
+         
           grow
     centered
     style="background-color: var(--light-color)"
