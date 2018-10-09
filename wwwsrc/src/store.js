@@ -39,6 +39,10 @@ export default new Vuex.Store({
     },
     addedVault(state, vault) {
       state.vaults.push(vault)
+    },
+
+    createKeep(state, keeps) {
+      state.keeps.push(keeps)
     }
 
 
@@ -105,16 +109,18 @@ export default new Vuex.Store({
 
     },
 
-    addKeep({ commit, dispatch }, vault) {
+    addKeep({ commit, dispatch }, keep) {
       let addedKeep = {
-        name: vault.name,
-        description: vault.description,
-        imgUrl: vault.imgUrl
+        name: keep.name,
+        description: keep.description,
+        imgUrl: keep.imgUrl
       }
 
-      api.post('/', addedKeep)
+      api.post('keeps', addedKeep)
         .then(res => {
-          commit('setKeeps', res.data)
+          commit('createKeep', res.data)
+          debugger
+
         })
 
     }
