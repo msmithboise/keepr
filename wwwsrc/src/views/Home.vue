@@ -2,6 +2,8 @@
 <v-app>
   <v-content>
   <div class="home">
+
+<TopNav></TopNav>
     <h1>Keepr</h1>
 
 
@@ -26,6 +28,8 @@
 </template>
 
 <script>
+import TopNav from "@/components/TopNav.vue";
+
 export default {
   name: "home",
   mounted() {
@@ -50,6 +54,10 @@ export default {
     keeps() {
       return this.$store.state.keeps;
     }
+  },
+
+  components: {
+    TopNav
   },
   methods: {
     createVault(vault) {
