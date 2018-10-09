@@ -28,6 +28,7 @@
     </v-toolbar>
 
           <v-tabs
+          grow
     centered
     style="background-color: var(--light-color)"
     dark
@@ -62,7 +63,16 @@
 
 <script>
 export default {
-  name: "top-nav"
+  name: "top-nav",
+  data() {
+    return {
+      text: "VAULTS GO HERE!"
+    };
+  }
+};
+</script>
+      }
+  },
 };
 </script>
 
