@@ -5,28 +5,23 @@ namespace keepr.Models
     public class VaultKeep
     {
 
-
+        // it's own ID
         public int Id { get; set; }
+        public int KeepId { get; set; }
+        public int VaultId { get; set; }
 
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
-
-        [Required]
-        [MinLength(6)]
-        public string Name { get; set; }
-
-        [Required]
-        [MaxLength(255)]
-        public string Description { get; set; }
-
-
-
-        public VaultKeep(string name, string description)
+        public VaultKeep(int keepId, int vaultId, string userId)
         {
-            Name = name;
-            Description = description;
+
+            KeepId = keepId;
+            VaultId = vaultId;
+            UserId = userId;
 
         }
+
+
 
 
     }

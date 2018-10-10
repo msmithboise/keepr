@@ -17,11 +17,11 @@ namespace keepr.Controllers
             _repo = repo;
         }
 
-        [HttpGet]
-        public IEnumerable<VaultKeep> Get()
-        {
-            return _repo.GetAll();
-        }
+        // [HttpGet]
+        // public IEnumerable<VaultKeep> Get()
+        // {
+        //     return _repo.GetAll();
+        // }
 
         [Authorize]
         [HttpPost]
@@ -29,7 +29,9 @@ namespace keepr.Controllers
         {
             if (ModelState.IsValid)
             {
-                vaultKeep = new VaultKeep(vaultKeep.Name, vaultKeep.Description);
+                // this is your req.session.uid
+                string id = HttpContext.User.Identity.Name;
+                vaultKeep.UserId = id;
                 return _repo.Create(vaultKeep);
             }
             throw new Exception("INVALID VAULTKEEP");
