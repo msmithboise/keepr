@@ -18,6 +18,8 @@ namespace keepr.Controllers
         }
 
 
+        // GET vaults by ID
+
         [Authorize]
         [HttpGet]
         public IEnumerable<Vault> Get()
@@ -27,7 +29,7 @@ namespace keepr.Controllers
 
         }
 
-
+        // POST vaults
         [Authorize]
         [HttpPost]
         public Vault Post([FromBody] Vault vault)
@@ -41,6 +43,8 @@ namespace keepr.Controllers
             }
             throw new Exception("INVALID VAULT");
         }
+
+        // GET vaults by vault ID
 
         [Authorize]
         [Route("{id}")]

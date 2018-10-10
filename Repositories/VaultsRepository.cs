@@ -24,7 +24,7 @@ namespace keepr.Repositories
             return _db.Query<Vault>("SELECT * FROM vaults WHERE userId = @userId;", new { userId });
         }
 
-        //GET Vault BY ID
+        //GET Vault BY user ID
         public Vault GetById(int id)
         {
             return _db.Query<Vault>("SELECT * FROM vaults WHERE id = @id;", new { id }).FirstOrDefault();
@@ -45,7 +45,7 @@ namespace keepr.Repositories
         //UPDATE Vault
         public Vault EditVault(int id, Vault vault)
         {
-            //string query = 
+
             return _db.QueryFirstOrDefault<Vault>($@"UPDATE vaults 
             SET 
             name = @Name, 

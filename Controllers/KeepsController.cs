@@ -17,11 +17,26 @@ namespace keepr.Controllers
             _repo = repo;
         }
 
+
+        // GET all keeps
+
         [HttpGet]
         public IEnumerable<Keep> Get()
         {
             return _repo.GetAll();
         }
+
+
+        // GET keeps by keep ID
+
+        // [Route("{id}")]
+        // [HttpGet("GetbyId")]
+        // public Keep GetKeepById(int id)
+        // {
+        //     return _repo.GetById(id);
+        // }
+
+        // POST keeps
 
         [Authorize]
         [HttpPost]
@@ -36,6 +51,35 @@ namespace keepr.Controllers
             }
             throw new Exception("INVALID KEEP");
         }
+
+
+
+
+        [Route("{id}")]
+        [HttpGet("GetbyId")]
+        public Keep GetbyId(int id)
+        {
+            return _repo.GetById(id);
+        }
+        // 
+
+
+
+        [HttpPut("{id}")]
+        public Keep Put(int id, [FromBody]Keep keep)
+        {
+            return _repo.EditKeep(id, keep);
+        }
+
+
+        [HttpDelete("{id}")]
+        public int Delete(int id)
+        {
+            return _repo.Delete(id);
+        }
+
+
+
 
     }
 

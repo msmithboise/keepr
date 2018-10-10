@@ -24,13 +24,13 @@ namespace keepr.Repositories
             return _db.Query<Keep>("SELECT * FROM keeps;");
         }
 
-        //GET BURGER BY ID
+        //GET Keep BY ID
         public Keep GetById(int id)
         {
             return _db.Query<Keep>("SELECT * FROM keeps WHERE id = @id;", new { id }).FirstOrDefault();
         }
 
-        //CREATE BURGER
+        //CREATE Keep
         public Keep Create(Keep keep)
         {
             int id = _db.ExecuteScalar<int>(@"
@@ -42,19 +42,21 @@ namespace keepr.Repositories
             return keep;
         }
 
-        //UPDATE BURGER
-        public Keep Update(Keep keep)
+        //UPDATE Keep
+        public Keep EditKeep(int id, Keep keep)
         {
-            _db.Execute(@"
-      UPDATE keeps SET (name, description, imgUrl) 
-      VALUES (@Name, @Description, @ImgUrl)
-      WHERE id = @Id
-      ", keep);
-            return keep;
+
+            return _db.QueryFirstOrDefault<Keep>($@"UPDATE keeps 
+            SET 
+            name = @Name, 
+            description = @Description,
+            imgUrl = @ImgUrl
+            WHERE id = {id};
+            SELECT * FROM Keeps WHERE Id = {id};", keep);
         }
 
-        //DELETE BURGER
-        public Keep Delete(Keep keep)
+        //DELETE keep
+        public Keep DeleteKeep(Keep keep)
         {
             _db.Execute("DELETE FROM keeps WHERE id = @Id", keep);
             return keep;
