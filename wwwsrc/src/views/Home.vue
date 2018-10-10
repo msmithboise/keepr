@@ -8,8 +8,7 @@
 
 
 
-
-        <v-layout row justify-center>
+        <v-layout row>
           <v-dialog v-model="dialog" persistent max-width="500px">
             <v-btn class="mt-5" fab slot="activator" color="white" light>
               <v-icon>add_circle_outline</v-icon>
@@ -22,9 +21,6 @@
               <v-card-text>
                 <v-container grid-list-md>
                   <v-layout wrap>
-
-
-
                     <v-flex xs12>
                       <v-text-field label="Name" type="text" class="form-control" v-model="name" required></v-text-field>
                     </v-flex>
@@ -32,14 +28,11 @@
                       <v-text-field label="Description" type="text" class="form-control" v-model="description" required></v-text-field>
                     </v-flex>
                     <v-flex xs12 sm6>
-
                       <v-text-field label="Image Link" type="text" class="form-control" v-model="imgUrl" required></v-text-field>
                     </v-flex>
                   </v-layout>
                 </v-container>
               </v-card-text>
-
-
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="blue darken-1" flat @click.native="dialog = false">Cancel</v-btn>
@@ -51,6 +44,7 @@
         </v-layout>
 
 
+        <div class="page-wrapper">
 
 
 
@@ -58,38 +52,41 @@
 
 
 
-        <div class="keeps page-wrapper">
+
+          <div class="keeps">
 
 
 
-          <div v-for="keep in keeps" :key="keep._id">
+            <div v-for="keep in keeps" :key="keep._id">
 
 
 
-            <v-img :src="keep.imgUrl" class="white--text" height="400px" width="250px">
+              <v-img :src="keep.imgUrl" height="200px" width="400px">
 
 
 
 
-              <v-btn @click="saveKeep(keep)" value=true class="heart-icon" fab dark small color="pink">
-                <v-icon dark>favorite</v-icon>
-              </v-btn>
+                <v-btn @click="saveKeep(keep)" value=true class="heart-icon" fab dark small color="pink">
+                  <v-icon dark>favorite</v-icon>
+                </v-btn>
 
-            </v-img>
+              </v-img>
 
-            <span style="color: #3b3b3b" class="headline">{{keep.name}}</span>
-            <v-divider light></v-divider>
-            <span style="color: #3b3b3b" class="align-center sub-text">{{keep.description}}</span><br>
+              <span style="color: #3b3b3b" class="headline">{{keep.name}}</span>
+              <v-divider light></v-divider>
+              <span style="color: #3b3b3b" class="align-center sub-text">{{keep.description}}</span><br>
 
-            <!-- <img :src="keep.imgUrl" alt=""> -->
-            <!-- <v-hover>
+              <!-- <img :src="keep.imgUrl" alt=""> -->
+              <!-- <v-hover>
             </v-hover> -->
 
+            </div>
           </div>
+
+
+
+
         </div>
-
-
-
 
       </div>
     </v-content>
@@ -118,7 +115,7 @@
         dialog: false,
         name: "",
         description: "",
-        imgUrl: "",
+        imgUrl: ""
       };
     },
 
@@ -142,16 +139,13 @@
           name: this.name,
           description: this.description,
           imgUrl: this.imgUrl
-        }
-        debugger
-        this.$store.dispatch("addKeep", keep);
+        };
 
+        this.$store.dispatch("addKeep", keep);
       },
 
       saveKeep(saveKeep) {
-
-        this.$store.dispatch("saveToKeep", saveKeep)
-        debugger
+        this.$store.dispatch("saveToKeep", saveKeep);
       }
     }
   };
@@ -159,26 +153,33 @@
 
 <style>
   /* .page-wrapper {
-    max-width: calc(120rem + 2rem);
-    margin: 0 auto;
-    width: 100%;
-    /* overflow: hidden; */
-  /* text-overflow: ellipsis;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 3rem;
+  width: 100%;
+  height: auto;
+  letter-spacing: 0.3rem;
   text-align: center;
   text-transform: uppercase;
-  margin-top: 3rem;
-  color: rgba(#66fcf1, 0.85);
-  letter-spacing: 0.3rem !important;
-  } */
 
-  */ .keeps {
+  /* justify-content: space-evenly; */
+  /* max-width: calc(200rem + 2rem); */
+  /* margin: 0 auto; */
+  /* overflow: hidden;
+  text-overflow: ellipsis; */
+
+  /* !important */
+  /* /* }  */
+
+  .keeps {
     display: flex;
-    align-content: center;
-    justify-content: space-between;
-    margin-top: 5vh;
+    justify-content: center;
+    flex-flow: row wrap;
+    align-content: space-between;
   }
 
   .heart-icon {
-    margin-top: 20vh;
+    display: flex;
   }
 </style>
