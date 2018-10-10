@@ -24,6 +24,7 @@ namespace keepr.Controllers
         {
             string userId = HttpContext.User.Identity.Name;
             return _repo.GetAll(userId);
+
         }
 
 
@@ -33,11 +34,13 @@ namespace keepr.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+                string id = HttpContext.User.Identity.Name;
+                vault.UserId = id;
                 return _repo.Create(vault);
+
             }
             throw new Exception("INVALID VAULT");
-        } 
+        }
 
         [Authorize]
         [Route("{id}")]
@@ -51,16 +54,16 @@ namespace keepr.Controllers
 
 
         [HttpPut("{id}")]
-        public Vault Put(string id, [FromBody]Vault vault)
+        public Vault Put(int id, [FromBody]Vault vault)
         {
-            return _repo.EditVault(vault);
+            return _repo.EditVault(id, vault);
         }
 
 
         [HttpDelete("{id}")]
-        public Vault Delete(string id, [FromBody] Vault vault)
+        public int Delete(int id)
         {
-            return _repo.DeleteVault(vault);
+            return _repo.Delete(id);
         }
 
     }

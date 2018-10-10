@@ -10,13 +10,13 @@ namespace keepr.Models
         public int Shares { get; set; }
         public int Views { get; set; }
 
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public string UserId { get; set; }
 
 
         [Required]
-        [MinLength(6)]
+        [MinLength(1)]
         public string Name { get; set; }
 
         [Required]

@@ -24,7 +24,7 @@ namespace keepr.Repositories
             return _db.Query<VaultKeep>("SELECT * FROM vaultKeeps;");
         }
 
-        //GET Vault BY ID
+        //GET Vaultkeep by vault id and keep id
         public VaultKeep GetById(int id)
         {
             return _db.Query<VaultKeep>("SELECT * FROM vaultKeeps WHERE id = @id;", new { id }).FirstOrDefault();

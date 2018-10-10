@@ -33,7 +33,7 @@ namespace keepr.Repositories
         //CREATE Vault
         public Vault Create(Vault vault)
         {
-            string id = _db.ExecuteScalar<string>(@"
+            int id = _db.ExecuteScalar<int>(@"
         INSERT INTO vaults (name, description, isPrivate, keeps, shares, views, userId)
         VALUES (@Name, @Description, @IsPrivate, @Keeps, @Shares, @Views, @UserId);
         SELECT LAST_INSERT_ID();", vault
@@ -43,12 +43,19 @@ namespace keepr.Repositories
         }
 
         //UPDATE Vault
-        public Vault EditVault(Vault vault)
+        public Vault EditVault(int id, Vault vault)
         {
-            _db.Execute(@" UPDATE vaults 
-            SET name = @Name, description = @Description, isPrivate = @IsPrivate, keeps = @Keeps, shares = @Shares, views = @Views)
-            WHERE id = @Id;", vault);
-            return vault;
+            //string query = 
+            return _db.QueryFirstOrDefault<Vault>($@"UPDATE vaults 
+            SET 
+            name = @Name, 
+            description = @Description,
+            isPrivate = @IsPrivate,
+            keeps = @Keeps,
+            shares = @Shares,
+            views = @Views
+            WHERE id = {id};
+            SELECT * FROM Vaults WHERE Id = {id};", vault);
         }
 
         //DELETE Vault
@@ -76,7 +83,7 @@ namespace keepr.Repositories
 
         public int Delete(int id)
         {
-            return _db.Execute("DELETE FROM vaults WHERE id = @id", new { id });
+            return _db.Execute($"DELETE FROM vaults WHERE id = {id}");
         }
 
 
