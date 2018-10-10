@@ -120,7 +120,7 @@ export default new Vuex.Store({
 
       api.post('keeps', keep)
         .then(res => {
-          console.log(res)
+          // console.log(res)
           commit('createKeep', res.data)
 
 
@@ -128,8 +128,15 @@ export default new Vuex.Store({
 
     },
 
-    saveToKeep({ commit, dispatch }, savedKeep) {
-      commit("saveToMyKeeps", savedKeep)
+
+    saveKeepToVault({ commit, dispatch }, keep) {
+      api.post('', keep)
+    },
+
+
+    saveKeep({ commit, dispatch }, savedKeep) {
+      dispatch("saveKeepToVault", savedKeep)
+      console.log(savedKeep)
     }
   }
 })

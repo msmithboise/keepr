@@ -7,7 +7,7 @@
 
 
 
-
+        <!-- Modal for creating a keep -->
         <v-layout row>
           <v-dialog v-model="dialog" persistent max-width="500px">
             <v-btn class="mt-5" fab slot="activator" color="white" light>
@@ -44,27 +44,17 @@
         </v-layout>
 
 
+
+
+
+
+
+
         <div class="page-wrapper">
 
-
-
-
-
-
-
-
           <div class="keeps">
-
-
-
             <div v-for="keep in keeps" :key="keep._id">
-
-
-
               <v-img :src="keep.imgUrl" height="200px" width="400px">
-
-
-
 
                 <v-btn @click="saveKeep(keep)" value=true class="heart-icon" fab dark small color="pink">
                   <v-icon dark>favorite</v-icon>
@@ -75,17 +65,8 @@
               <span style="color: #3b3b3b" class="headline">{{keep.name}}</span>
               <v-divider light></v-divider>
               <span style="color: #3b3b3b" class="align-center sub-text">{{keep.description}}</span><br>
-
-              <!-- <img :src="keep.imgUrl" alt=""> -->
-              <!-- <v-hover>
-            </v-hover> -->
-
             </div>
           </div>
-
-
-
-
         </div>
 
       </div>
@@ -144,8 +125,10 @@
         this.$store.dispatch("addKeep", keep);
       },
 
-      saveKeep(saveKeep) {
-        this.$store.dispatch("saveToKeep", saveKeep);
+      saveKeep(savedkeep) {
+        this.$store.dispatch("saveKeep", savedkeep);
+
+
       }
     }
   };
