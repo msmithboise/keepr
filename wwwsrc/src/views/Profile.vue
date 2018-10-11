@@ -2,7 +2,10 @@
   <div>
 
     <ProfileNav></ProfileNav>
+    <div>
 
+      <h1 class="mt-5">My Profile</h1>
+    </div>
     <!-- Modal for creating a keep -->
     <div>
       <v-layout row>
@@ -50,9 +53,12 @@
         <div class="vaults">
           <div v-for="vault in vaults" :key="vault._id">
 
-            <span style="color: #3b3b3b" class="headline">{{vault.name}}</span>
-            <v-divider light></v-divider>
-            <span style="color: #3b3b3b" class="align-center sub-text">{{vault.description}}</span><br>
+            <v-btn>
+              <span style="color: #3b3b3b" class="headline">{{vault.name}}</span>
+              <v-divider light></v-divider>
+              <span style="color: #3b3b3b" class="align-center sub-text">{{vault.description}}</span><br>
+            </v-btn>
+
           </div>
         </div>
       </div>
