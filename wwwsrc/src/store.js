@@ -33,13 +33,13 @@ export default new Vuex.Store({
     },
     setKeeps(state, keeps) {
       state.keeps = keeps;
-
-
     },
+
     setVaults(state, vaults) {
       state.vaults = vaults;
     },
-    addedVault(state, vault) {
+
+    createVault(state, vault) {
       state.vaults.push(vault)
     },
 
@@ -85,6 +85,8 @@ export default new Vuex.Store({
         })
     },
 
+
+    // Gets all keeps on page load
     getAllKeeps({ commit, dispatch }) {
       api.get('keeps')
         .then(res => {
@@ -93,50 +95,44 @@ export default new Vuex.Store({
         })
     },
 
-    getVaults({ commit, dispatch }) {
-      api.get('vaults')
-        .then(res => {
 
-          commit('setVaults', res.data)
-        })
-    },
-
-    addVaults({ commit, dispatch }, vault) {
-      let addedVault = {
-        name: vault.name,
-        description: vault.description,
-
-      }
-
-      api.post('/', addedVault) // this is where you're sending your board.
-        .then(res => {
-          commit('addToVault', res.data)
-        })
-
-    },
-
+    // Creates new keep
     addKeep({ commit, dispatch }, keep) {
-
-
       api.post('keeps', keep)
         .then(res => {
           // console.log(res)
           commit('createKeep', res.data)
-
-
         })
+    },
 
+    // Saves keep to vault
+
+    // saveKeep({ commit, dispatch }, savedKeep) {
+    //   // dispatch("saveKeepToVault", savedKeep)
+    //   console.log(savedKeep)
+    // },
+
+
+
+    // Gets all user vaults on page load
+    getAllVaults({ commit, dispatch }) {
+      api.get('vaults')
+        .then(res => {
+          console.log(res)
+          commit('setVaults', res.data)
+        })
     },
 
 
-    saveKeepToVault({ commit, dispatch }, keep) {
-      api.post('', keep)
-    },
-
-
-    saveKeep({ commit, dispatch }, savedKeep) {
-      dispatch("saveKeepToVault", savedKeep)
-      console.log(savedKeep)
+    // Creates new vault
+    addVault({ commit, dispatch }, vault) {
+      api.post('vaults', vault)
+        .then(res => {
+          console.log(res)
+          commit('createVault', res.data)
+          debugger
+        })
     }
+
   }
 })

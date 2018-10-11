@@ -87,6 +87,8 @@
       // gets all keeps
       this.$store.dispatch("getAllKeeps");
 
+
+
       // this gets all vaults
     },
 
@@ -111,9 +113,6 @@
       TopNav
     },
     methods: {
-      createVault(vault) {
-        this.$store.dispatch("addVaults", vault);
-      },
 
       createKeep() {
         let keep = {
@@ -126,7 +125,8 @@
       },
 
       saveKeep(savedkeep) {
-        this.$store.dispatch("saveKeep", savedkeep);
+        // this.$store.dispatch("saveKeep", savedkeep);
+        console.log(savedkeep)
 
 
       }

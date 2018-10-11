@@ -27,7 +27,7 @@
       </v-btn> -->
     </v-toolbar>
 
-          <v-tabs
+          <!-- <v-tabs
          
           grow
     centered
@@ -39,18 +39,18 @@
 
     <v-tab href="#tab-1">
       My Vaults
-      <!-- <v-icon>Vaults</v-icon> -->
+      <v-icon>Vaults</v-icon>
     </v-tab>
 
     <v-tab href="#tab-2">
       My Keeps
-      <!-- <v-icon>Keeps</v-icon> -->
+      <v-icon>Keeps</v-icon>
     </v-tab>
 
   
 
     <v-tab-item
-      v-for="i in 3"
+      v-for="i in 2"
       :id="'tab-' + i"
       :key="i"
     >
@@ -58,7 +58,7 @@
         <v-card-text>{{ text }}</v-card-text>
       </v-card>
     </v-tab-item>
-  </v-tabs>
+  </v-tabs> -->
  </div>
 </template>
 
