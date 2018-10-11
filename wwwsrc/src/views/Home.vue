@@ -47,6 +47,40 @@
 
 
 
+            
+       <v-layout row justify-center>
+    <v-dialog v-model="heartDialogVal" scrollable max-width="300px">
+      
+      <v-card>
+        <v-card-title>Select Vault</v-card-title>
+        <v-divider></v-divider>
+        <v-card-text style="height: 300px;">
+
+
+          
+           <v-radio-group v-model="vaultId" column>
+            <v-radio v-for="vault in vaults" :key="vault._id" :label="vault.name" :value="vault.id"></v-radio>
+          </v-radio-group>
+
+            
+            
+        </v-card-text>
+        <v-divider></v-divider>
+        <v-card-actions>
+          <v-btn color="blue darken-1" flat @click.native="heartDialogVal = false">Close</v-btn>
+          <v-btn @click="saveKeep()" color="blue darken-1" flat @click.native="heartDialogVal = false">Save</v-btn>
+
+          
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-layout>
+         
+
+
+
+
+
 
 
 
@@ -56,7 +90,7 @@
             <div v-for="keep in keeps" :key="keep._id">
               <v-img :src="keep.imgUrl" height="200px" width="400px">
 
-                <v-btn @click="saveKeep(keep)" value=true class="heart-icon" fab dark small color="pink">
+                <v-btn @click="heartDialogVal = true; keepId = keep.id" value=true class="heart-icon" fab dark small color="pink">
                   <v-icon dark>favorite</v-icon>
                 </v-btn>
 
@@ -75,67 +109,69 @@
 </template>
 
 <script>
-  import TopNav from "@/components/TopNav.vue";
+import TopNav from "@/components/TopNav.vue";
 
-  export default {
-    name: "home",
-    mounted() {
-      //blocks users not logged in
-      if (!this.$store.state.user.id) {
-        this.$router.push({ name: "login" });
-      }
-      // gets all keeps
-      this.$store.dispatch("getAllKeeps");
-
-
-
-      // this gets all vaults
-    },
-
-    data() {
-      return {
-        keepName: "",
-        dialog: false,
-        name: "",
-        description: "",
-        imgUrl: ""
-      };
-    },
-
-    // v-for is iterating computed
-    computed: {
-      keeps() {
-        return this.$store.state.keeps;
-      }
-    },
-
-    components: {
-      TopNav
-    },
-    methods: {
-
-      createKeep() {
-        let keep = {
-          name: this.name,
-          description: this.description,
-          imgUrl: this.imgUrl
-        };
-
-        this.$store.dispatch("addKeep", keep);
-      },
-
-      saveKeep(savedkeep) {
-        // this.$store.dispatch("saveKeep", savedkeep);
-        console.log(savedkeep)
-
-
-      }
+export default {
+  name: "home",
+  mounted() {
+    //blocks users not logged in
+    if (!this.$store.state.user.id) {
+      this.$router.push({ name: "login" });
     }
-  };
+    // gets all keeps
+    this.$store.dispatch("getAllKeeps");
+    this.$store.dispatch("getAllVaults");
+
+    // this gets all vaults
+  },
+
+  data() {
+    return {
+      keepName: "",
+      dialog: false,
+      dialogSave: false,
+      vaultId: "",
+      keepId: "",
+      name: "",
+      description: "",
+      imgUrl: "",
+      heartDialogVal: false
+    };
+  },
+
+  // v-for is iterating computed
+  computed: {
+    keeps() {
+      return this.$store.state.keeps;
+    },
+    vaults() {
+      return this.$store.state.vaults;
+    }
+  },
+
+  components: {
+    TopNav
+  },
+  methods: {
+    createKeep() {
+      let keep = {
+        name: this.name,
+        description: this.description,
+        imgUrl: this.imgUrl
+      };
+
+      this.$store.dispatch("addKeep", keep);
+    },
+
+    saveKeep() {
+      console.log("keepId: ", this.keepId, "vaultId: ", this.vaultId);
+    }
+  }
+};
 </script>
 
 <style>
-  /* .page-wrapper {
+/* .page-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -147,22 +183,22 @@
   text-transform: uppercase;
 
   /* justify-content: space-evenly; */
-  /* max-width: calc(200rem + 2rem); */
-  /* margin: 0 auto; */
-  /* overflow: hidden;
+/* max-width: calc(200rem + 2rem); */
+/* margin: 0 auto; */
+/* overflow: hidden;
   text-overflow: ellipsis; */
 
-  /* !important */
-  /* /* }  */
+/* !important */
+/* /* }  */
 
-  .keeps {
-    display: flex;
-    justify-content: center;
-    flex-flow: row wrap;
-    align-content: space-between;
-  }
+.keeps {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  align-content: space-between;
+}
 
-  .heart-icon {
-    display: flex;
-  }
+.heart-icon {
+  display: flex;
+}
 </style>
