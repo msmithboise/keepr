@@ -140,9 +140,12 @@ export default new Vuex.Store({
       // console.log(vaultKeep)
 
       api.post('vaultkeeps', vaultKeep)
+        // vaultkeep has {keepId : 21, vaultId: 12}
         .then(res => {
           commit('setVaultKeeps', res.data)
+          // res.data has 
           console.log(res.data)
+          // res.data has object with id: , keep id, userId, vaultId
         })
     }
 

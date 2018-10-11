@@ -30,9 +30,10 @@ export default new Router({
     },
 
     {
-      path: '/vault',
+      path: '/vault/:vaultId',
       name: 'vault',
       component: Vault
     }
+
   ]
 })
