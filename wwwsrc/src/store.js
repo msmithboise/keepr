@@ -49,7 +49,6 @@ export default new Vuex.Store({
 
     setVaultKeeps(state, newVaultKeep) {
       state.myKeeps.push(newVaultKeep)
-      debugger
     }
 
 
@@ -140,10 +139,10 @@ export default new Vuex.Store({
     saveKeepToVault({ commit, dispatch }, vaultKeep) {
       // console.log(vaultKeep)
 
-      api.post('vaultKeeps', vaultKeep)
+      api.post('vaultkeeps', vaultKeep)
         .then(res => {
-          // console.log(res)
           commit('setVaultKeeps', res.data)
+          console.log(res.data)
         })
     }
 

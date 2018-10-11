@@ -88,6 +88,7 @@
 
           <div class="keeps">
             <div v-for="keep in keeps" :key="keep._id">
+              <v-card hover>
               <v-img :src="keep.imgUrl" height="200px" width="400px">
                   <!-- because v-for is here we can pass any data we want by declaring it a variable.. keep.id = keepId, in this case we are passing it into our data() so method can take it in. -->
                 <v-btn @click="heartDialogVal = true; keepId = keep.id" value=true class="heart-icon" fab dark small color="pink">
@@ -99,6 +100,7 @@
               <span style="color: #3b3b3b" class="headline">{{keep.name}}</span>
               <v-divider light></v-divider>
               <span style="color: #3b3b3b" class="align-center sub-text">{{keep.description}}</span><br>
+              </v-card>
             </div>
           </div>
         </div>
