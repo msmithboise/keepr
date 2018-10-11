@@ -18,11 +18,11 @@ namespace keepr.Repositories
 
         //CRUD VIA SQL
 
-        // //GET ALL VaultKeeps
-        // public IEnumerable<VaultKeep> GetAll(string userId)
-        // {
-        //     return _db.Query<VaultKeep>("SELECT * FROM vaultKeeps WHERE userId = @userId;", new { userId });
-        // }
+        //GET ALL VaultKeeps
+        public IEnumerable<VaultKeep> GetAll(string userId)
+        {
+            return _db.Query<VaultKeep>("SELECT * FROM vaultKeeps WHERE userId = @userId;", new { userId });
+        }
 
         // //GET Vaultkeep by vault id and keep id
         // public VaultKeep GetById(int id)

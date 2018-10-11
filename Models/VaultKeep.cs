@@ -12,14 +12,7 @@ namespace keepr.Models
 
         public string UserId { get; set; }
 
-        public VaultKeep(int keepId, int vaultId, string userId)
-        {
 
-            KeepId = keepId;
-            VaultId = vaultId;
-            UserId = userId;
-
-        }
 
 
 

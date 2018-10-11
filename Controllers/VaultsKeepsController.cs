@@ -17,11 +17,14 @@ namespace keepr.Controllers
             _repo = repo;
         }
 
-        // [HttpGet]
-        // public IEnumerable<VaultKeep> Get()
-        // {
-        //     return _repo.GetAll();
-        // }
+        [Authorize]
+        [HttpGet]
+        public IEnumerable<VaultKeep> Get()
+        {
+            string userId = HttpContext.User.Identity.Name;
+            return _repo.GetAll(userId);
+
+        }
 
         [Authorize]
         [HttpPost]
