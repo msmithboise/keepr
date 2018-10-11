@@ -17,6 +17,8 @@ namespace keepr.Controllers
             _repo = repo;
         }
 
+
+        // Get vaultkeeps by userid
         [Authorize]
         [HttpGet]
         public IEnumerable<VaultKeep> Get()
@@ -26,6 +28,7 @@ namespace keepr.Controllers
 
         }
 
+        // post vaultkeeps
         [Authorize]
         [HttpPost]
         public VaultKeep Post([FromBody] VaultKeep vaultKeep)
@@ -40,6 +43,14 @@ namespace keepr.Controllers
             throw new Exception("INVALID VAULTKEEP");
         }
 
+        //Get vaultkeeps by vaultkeepID
+        [Authorize]
+        [Route("{id}")]
+        [HttpGet("GetbyId")]
+        public VaultKeep GetbyId(int id)
+        {
+            return _repo.GetById(id);
+        }
     }
 
 }
