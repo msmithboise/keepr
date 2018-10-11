@@ -47,7 +47,7 @@
 
 
 
-            
+            <!-- save keep dialog, from clicking on heart icon here.  Saves keep into vault. -->
        <v-layout row justify-center>
     <v-dialog v-model="heartDialogVal" scrollable max-width="300px">
       
@@ -82,14 +82,14 @@
 
 
 
-
+        <!-- this is where the heart icon will be calling the dialog above. -->
 
         <div class="page-wrapper">
 
           <div class="keeps">
             <div v-for="keep in keeps" :key="keep._id">
               <v-img :src="keep.imgUrl" height="200px" width="400px">
-
+                  <!-- because v-for is here we can pass any data we want by declaring it a variable.. keep.id = keepId, in this case we are passing it into our data() so method can take it in. -->
                 <v-btn @click="heartDialogVal = true; keepId = keep.id" value=true class="heart-icon" fab dark small color="pink">
                   <v-icon dark>favorite</v-icon>
                 </v-btn>
@@ -131,7 +131,7 @@ export default {
       dialog: false,
       dialogSave: false,
       vaultId: "",
-      keepId: "",
+      keepId: "", // here is where the data was passed..
       name: "",
       description: "",
       imgUrl: "",
@@ -163,8 +163,18 @@ export default {
       this.$store.dispatch("addKeep", keep);
     },
 
+    // we had originally declared keep id as an empty string, but we are filling it with our new data, same with vaultId.
     saveKeep() {
-      console.log("keepId: ", this.keepId, "vaultId: ", this.vaultId);
+      let vaultKeep = {
+        keepId: this.keepId,
+        vaultId: this.vaultId
+      };
+      this.$store.dispatch("saveKeepToVault", vaultKeep);
+      // console.log(vaultKeep);
+
+      // console.log("keepId: ", this.keepId, "vaultId: ", this.vaultId);
+
+      // combined new found data into a single object to pass to action in store
     }
   }
 };
