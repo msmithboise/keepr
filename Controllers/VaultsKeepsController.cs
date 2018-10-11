@@ -18,13 +18,13 @@ namespace keepr.Controllers
         }
 
 
-        // Get vaultkeeps by userid
+        // Get keeps by vaultId
+        //Route: 'api/vaultkeeps/SOMEID'
         [Authorize]
-        [HttpGet]
-        public IEnumerable<VaultKeep> Get()
+        [HttpGet("{vaultId}")]
+        public IEnumerable<Keep> Get(int vaultId)
         {
-            string userId = HttpContext.User.Identity.Name;
-            return _repo.GetAll(userId);
+            return _repo.GetAll(vaultId);
 
         }
 
@@ -44,13 +44,13 @@ namespace keepr.Controllers
         }
 
         //Get vaultkeeps by vaultkeepID
-        [Authorize]
-        [Route("{id}")]
-        [HttpGet("GetbyId")]
-        public VaultKeep GetbyId(int id)
-        {
-            return _repo.GetById(id);
-        }
+        // [Authorize]
+        // [Route("{id}")]
+        // [HttpGet("GetbyId")]
+        // public VaultKeep GetbyId(int id)
+        // {
+        //     return _repo.GetById(id);
+        // }
     }
 
 }

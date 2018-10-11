@@ -19,9 +19,13 @@ namespace keepr.Repositories
         //CRUD VIA SQL
 
         //GET ALL VaultKeeps
-        public IEnumerable<VaultKeep> GetAll(string userId)
+        public IEnumerable<Keep> GetAll(int vaultId)
         {
-            return _db.Query<VaultKeep>("SELECT * FROM vaultKeeps WHERE userId = @userId;", new { userId });
+            return _db.Query<Keep>(@"
+                SELECT* FROM vaultkeeps vk
+              INNER JOIN keeps k ON k.id = vk.keepId
+              WHERE (vaultId = vaultId)
+              ", new { vaultId });
         }
 
         //GET Vaultkeep by vault id and keep id
@@ -70,9 +74,9 @@ namespace keepr.Repositories
         //   ", new { id });
         //     }
 
-        //     //         SELECT* FROM vaultkeeps vk
-        //     //   INNER JOIN keeps k ON k.id = vk.keepId
-        //     //   WHERE (vaultId = 2)
+        //         SELECT* FROM vaultkeeps vk
+        //   INNER JOIN keeps k ON k.id = vk.keepId
+        //   WHERE (vaultId = 2)
 
 
         //     public int Delete(int id)

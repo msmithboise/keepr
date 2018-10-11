@@ -51,9 +51,9 @@
       <div class="page-wrapper">
 
         <div class="vaults">
-          <div v-for="vault in vaults" :key="vault._id">
+          <div v-for="vault in vaults" :key="vault.id">
 
-            <div @click="keepsPage" class="vault-card">
+            <div @click="keepsPage(vault)" class="vault-card">
 
               <div clas="vault-header">
                 <span style="color: #3b3b3b" class="headline">{{vault.name}}</span>
@@ -119,8 +119,16 @@ export default {
       this.$store.dispatch("addVault", vault);
     },
 
-    keepsPage() {
-      this.$router.push({ name: "vault" });
+    keepsPage(vault) {
+      this.$router.push({
+        name: "vault",
+        params: {
+          vaultId: vault.id
+        }
+      });
+
+      debugger;
+      // need to change this route to hit vault/id
     }
   },
 

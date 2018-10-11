@@ -25,6 +25,9 @@ import ProfileNav from "@/components/ProfileNav.vue";
 
 export default {
   name: "vault",
+  props: ["vaultId"],
+  //mounted
+  // fire off request to getVaultKeeps  pass it thisvaultId
   components: {
     TopNav,
     ProfileNav
