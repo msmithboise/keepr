@@ -4,7 +4,7 @@
     <ProfileNav></ProfileNav>
     <div>
 
-      <h1 class="mt-5">My Profile</h1>
+      <h1 class="mt-5">My Vaults</h1>
     </div>
     <!-- Modal for creating a keep -->
     <div>
@@ -53,11 +53,18 @@
         <div class="vaults">
           <div v-for="vault in vaults" :key="vault._id">
 
-            <v-btn>
-              <span style="color: #3b3b3b" class="headline">{{vault.name}}</span>
+            <div @click="keepsPage" class="vault-card">
+
+              <div clas="vault-header">
+                <span style="color: #3b3b3b" class="headline">{{vault.name}}</span>
+              </div>
               <v-divider light></v-divider>
-              <span style="color: #3b3b3b" class="align-center sub-text">{{vault.description}}</span><br>
-            </v-btn>
+              <div class="vault-sub">
+                <span style="color: #3b3b3b" class="align-center sub-text">{{vault.description}}</span><br>
+              </div>
+
+
+            </div>
 
           </div>
         </div>
@@ -79,46 +86,67 @@
 </template>
 
 <script>
-  import ProfileNav from "@/components/ProfileNav.vue";
+import ProfileNav from "@/components/ProfileNav.vue";
 
-  export default {
-    name: "profile",
+export default {
+  name: "profile",
 
-    mounted() {
-      this.$store.dispatch("getAllVaults");
-    },
+  mounted() {
+    this.$store.dispatch("getAllVaults");
+  },
 
-    data() {
-      return {
-        dialog: false,
-        name: "",
-        description: ""
-      };
-    },
+  data() {
+    return {
+      dialog: false,
+      name: "",
+      description: ""
+    };
+  },
 
-    computed: {
-      vaults() {
-        return this.$store.state.vaults;
-      }
-    },
-
-    methods: {
-      createVault() {
-        let vault = {
-          name: this.name,
-          description: this.description
-        };
-
-        this.$store.dispatch("addVault", vault);
-      }
-    },
-
-    components: {
-      ProfileNav
+  computed: {
+    vaults() {
+      return this.$store.state.vaults;
     }
-  };
+  },
+
+  methods: {
+    createVault() {
+      let vault = {
+        name: this.name,
+        description: this.description
+      };
+
+      this.$store.dispatch("addVault", vault);
+    },
+
+    keepsPage() {
+      this.$router.push({ name: "vault" });
+    }
+  },
+
+  components: {
+    ProfileNav
+  }
+};
 </script>
 
 
 <style>
+.vault-card {
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: space-between;
+  height: 15vh;
+  width: 30vh;
+  margin: 2vh 2vw;
+  border-radius: 2%;
+  box-shadow: 1px 1px 2px #e7e7e7;
+  border-radius: 4px;
+  z-index: 0;
+}
+
+.vault-header {
+  display: flex;
+  justify-content: center;
+}
 </style>

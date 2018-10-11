@@ -7,6 +7,8 @@ import Login from './views/Login.vue'
 
 import Profile from './views/Profile.vue'
 
+import Vault from './views/Vault.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -25,6 +27,12 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       component: Profile
+    },
+
+    {
+      path: '/vault',
+      name: 'vault',
+      component: Vault
     }
   ]
 })
