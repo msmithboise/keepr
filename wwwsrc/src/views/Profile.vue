@@ -11,9 +11,14 @@
     <div>
       <v-layout row>
         <v-dialog v-model="dialog" persistent max-width="500px">
+         
+         
           <v-btn class="mt-5" fab slot="activator" color="white" light>
             <v-icon>add_circle_outline</v-icon>
           </v-btn>
+
+
+
           <v-card>
             <v-card-title>
               <span class="headline align-center">Create Vault</span>
@@ -56,6 +61,9 @@
 
             <div @click="keepsPage(vault)" class="vault-card">
 
+          <v-btn @click="deleteVault(vault.id)" class="mt-5" small fab  color="white" light>
+            <v-icon>delete_forever</v-icon>
+          </v-btn>
               <div clas="vault-header">
                 <span style="color: #3b3b3b" class="headline">{{vault.name}}</span>
               </div>
@@ -118,6 +126,12 @@ export default {
       };
 
       this.$store.dispatch("addVault", vault);
+    },
+
+    deleteVault(vaultId) {
+      this.$store.dispatch("deleteVault", vaultId);
+      console.log(vaultId);
+      // vaultId = 12
     },
 
     keepsPage(vault) {
