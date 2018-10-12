@@ -25,8 +25,11 @@
               </v-img>
 
               <span style="color: #3b3b3b" class="headline">{{vaultkeep.name}}</span>
+              
               <v-divider light></v-divider>
               <span style="color: #3b3b3b" class="align-center sub-text">{{vaultkeep.description}}</span><br>
+
+              
             </v-card>
 
 
@@ -53,57 +56,61 @@
 
 
 <script>
-  import TopNav from "@/components/TopNav.vue";
-  import ProfileNav from "@/components/ProfileNav.vue";
+import TopNav from "@/components/TopNav.vue";
+import ProfileNav from "@/components/ProfileNav.vue";
 
-  export default {
-    name: "vault",
-    props: ["vaultId"],
+export default {
+  name: "vault",
+  props: ["vaultId"],
 
-    data() {
-      return {
-        name: "",
-        description: "",
-        imgUrl: ""
-      };
-    },
+  data() {
+    return {
+      name: "",
+      description: "",
+      imgUrl: ""
+    };
+  },
 
-    mounted() {
-      this.$store.dispatch("getAllVaultKeeps", this.vaultId);
-    },
+  mounted() {
+    this.$store.dispatch("getAllVaultKeeps", this.vaultId);
+  },
 
-    computed: {
-      vaultkeeps() {
-        return this.$store.state.vaultKeepsById;
-      }
-    },
-    //mounted
-    // fire off request to getVaultKeeps  pass it thisvaultId
-    components: {
-      TopNav,
-      ProfileNav
-    },
+  computed: {
+    vaultkeeps() {
+      return this.$store.state.vaultKeepsById;
+    }
+  },
+  //mounted
+  // fire off request to getVaultKeeps  pass it thisvaultId
+  components: {
+    TopNav,
+    ProfileNav
+  },
 
-
+  methods: {
     deleteVaultKeep(vaultkeepId) {
-      this.$store.dispatch("deleteVaultKeep", vaultkeepId);
-      console.log(vaultkeepId);
-      debugger
+      this.$store.dispatch("deleteVaultKeep", {
+        vId: this.vaultId,
+        kId: vaultkeepId
+      });
 
-      // vaultId = 12
-    },
-  };
+      debugger;
+    }
+
+    // vaultId = 12
+  }
+};
 </script>
 
 <style>
-  .vaultkeeps {
-    display: flex;
-    justify-content: center;
-    flex-flow: row wrap;
-    align-content: space-around;
-  }
+.vaultkeeps {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  align-content: space-around;
+}
 
-  .heart-icon {
-    display: flex;
-  }
+.heart-icon {
+  display: flex;
+}
 </style>
