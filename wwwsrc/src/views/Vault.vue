@@ -87,14 +87,13 @@ export default {
     ProfileNav
   },
 
+  // what sorcery is this?!
   methods: {
     deleteVaultKeep(vaultkeepId) {
       this.$store.dispatch("deleteVaultKeep", {
         vId: this.vaultId,
         kId: vaultkeepId
       });
-
-      debugger;
     }
 
     // vaultId = 12
