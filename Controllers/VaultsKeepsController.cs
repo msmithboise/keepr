@@ -24,7 +24,8 @@ namespace keepr.Controllers
         [HttpGet("{vaultId}")]
         public IEnumerable<Keep> Get(int vaultId)
         {
-            return _repo.GetAll(vaultId);
+            var keeps = _repo.GetAll(vaultId);
+            return keeps;
 
         }
 
