@@ -161,9 +161,9 @@ export default new Vuex.Store({
       api.get(`vaultkeeps/${vaultId}`)
         .then(res => {
           commit('getVaultKeeps', res.data)
-          // console.log(vaultId)
+          console.log(vaultId)
           debugger
-
+          // api.get(`vaultkeeps/${vaultId}`)
         })
     }
 
