@@ -83,7 +83,7 @@ namespace keepr.Repositories
 
         public int Delete(int id)
         {
-            return _db.Execute($"DELETE FROM vaults WHERE id = {id}");
+            return _db.Execute($"DELETE FROM vaultKeeps WHERE id = {id}");
         }
 
 

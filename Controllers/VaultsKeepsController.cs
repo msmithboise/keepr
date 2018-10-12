@@ -44,14 +44,14 @@ namespace keepr.Controllers
             throw new Exception("INVALID VAULTKEEP");
         }
 
-        //Get vaultkeeps by vaultkeepID
-        // [Authorize]
-        // [Route("{id}")]
-        // [HttpGet("GetbyId")]
-        // public VaultKeep GetbyId(int id)
-        // {
-        //     return _repo.GetById(id);
-        // }
+
+        //Delete vaultkeeps by ID
+        [HttpDelete("{vaultId}/{keepId}")]
+        public int Delete(int vaultId, int keepId)
+        {
+            return _repo.Delete(vaultId, keepId);
+        }
+
     }
 
 }

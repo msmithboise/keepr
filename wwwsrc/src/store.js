@@ -169,11 +169,20 @@ export default new Vuex.Store({
         })
     },
 
+    // Delete vault
     deleteVault({ commit, dispatch }, vaultId) {
       api.delete("vaults/" + vaultId)
         .then(res => {
           dispatch("getAllVaults")
           debugger
+        })
+    },
+
+    deleteVaultKeep({ commit, dispatch }, vaultkeepId) {
+      api.delete("vaultkeeps/" + vaultkeepId)
+        .then(res => {
+          dispatch("getAllVaultKeeps")
+
         })
     }
 

@@ -46,43 +46,17 @@ namespace keepr.Repositories
             return vaultKeep;
         }
 
-        //     //UPDATE Vault
-        //     public VaultKeep Update(VaultKeep vaultKeep)
-        //     {
-        //         _db.Execute(@"
-        //   UPDATE vaultKeeps SET (id, vaultId, keepId, UserId) 
-        //   WHERE id = @Id, @VaultId, @UserId, KeepId
-        //   ", vaultKeep);
-        //         return vaultKeep;
-        //     }
-
-        //     //DELETE Vault
-        //     public VaultKeep Delete(VaultKeep vaultKeep)
-        //     {
-        //         _db.Execute("DELETE FROM vaultKeeps WHERE id = @Id", vaultKeep);
-        //         return vaultKeep;
-        //     }
 
 
 
-        //     public IEnumerable<VaultKeep> GetKeepsByUserId(string id)
-        //     {
-        //         return _db.Query<VaultKeep>(@"
-        //     SELECT * FROM uservaultKeeps
-        //     INNER JOIN vaultKeeps ON vaults.id = uservaultKeepss.vaultKeepId
-        //     WHERE userId = @id
-        //   ", new { id });
-        //     }
-
-        //         SELECT* FROM vaultkeeps vk
-        //   INNER JOIN keeps k ON k.id = vk.keepId
-        //   WHERE (vaultId = 2)
+        //Delete Vaultkeep
+        public int Delete(int vaultId, int keepId)
+        {
+            return _db.Execute("DELETE FROM vaultKeeps WHERE vaultId = @vaultId AND keepId = @keepId;", new { vaultId, keepId });
+        }
 
 
-        //     public int Delete(int id)
-        //     {
-        //         return _db.Execute("DELETE FROM vaultKeeps WHERE id = @id", new { id });
-        //     }
+
 
 
     }
