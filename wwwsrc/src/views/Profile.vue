@@ -1,4 +1,5 @@
 <template>
+<v-app>
   <div>
 
     <ProfileNav></ProfileNav>
@@ -82,7 +83,7 @@
 
 
 
-
+</v-app>
 </template>
 
 <script>
@@ -127,7 +128,6 @@ export default {
         }
       });
 
-      debugger;
       // need to change this route to hit vault/id
     }
   },

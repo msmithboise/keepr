@@ -20,13 +20,16 @@ let api = Axios.create({
 
 
 export default new Vuex.Store({
+
   state: {
     user: {},
     keeps: [],
     vaults: [],
-    myKeeps: []
-
+    myKeeps: [],
+    vaultKeepsById: []
   },
+
+
   mutations: {
     setUser(state, user) {
       state.user = user
@@ -49,6 +52,11 @@ export default new Vuex.Store({
 
     setVaultKeeps(state, newVaultKeep) {
       state.myKeeps.push(newVaultKeep)
+    },
+
+    getVaultKeeps(state, vaultKeeps) {
+      state.vaultKeepsById = vaultKeeps
+
     }
 
 
@@ -120,7 +128,7 @@ export default new Vuex.Store({
     getAllVaults({ commit, dispatch }) {
       api.get('vaults')
         .then(res => {
-          console.log(res)
+          // console.log(res)
           commit('setVaults', res.data)
         })
     },
@@ -130,7 +138,7 @@ export default new Vuex.Store({
     addVault({ commit, dispatch }, vault) {
       api.post('vaults', vault)
         .then(res => {
-          console.log(res)
+          // console.log(res)
           commit('createVault', res.data)
 
         })
@@ -144,10 +152,21 @@ export default new Vuex.Store({
         .then(res => {
           commit('setVaultKeeps', res.data)
           // res.data has 
-          console.log(res.data)
+          // console.log(res.data)
           // res.data has object with id: , keep id, userId, vaultId
+        })
+    },
+
+    getAllVaultKeeps({ commit, dispatch }, vaultId) {
+      api.get('vaultkeeps/' + vaultId)
+        .then(res => {
+          commit('getVaultKeeps', res.data)
+          // console.log(vaultId)
+
         })
     }
 
   }
 })
+
+// api.delete('boards/' + boardId)
